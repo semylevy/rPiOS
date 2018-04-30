@@ -38,7 +38,7 @@ SetGpioFunction:
     str r1,[r0] /* stores into GPIO address */
     pop {pc}
 
-/* ********************** GetGPIO function ********************** */
+/* ********************** SetGPIO function ********************** */
 
 .globl SetGpio
 SetGpio:
