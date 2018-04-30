@@ -1,7 +1,11 @@
+/* ********************** GetMailboxBase function ********************** */
+
 .globl GetMailboxBase
 GetMailboxBase:
     ldr r0,=0x2000B880
     mov pc,lr
+
+/* ********************** MailboxWrite function ********************** */
 
 .globl MailboxWrite
 MailboxWrite:
@@ -35,6 +39,8 @@ MailboxWrite:
     .unreq value
     .unreq mailbox
     pop {pc}
+
+/* ********************** MailboxRead function ********************** */
 
 .globl MailboxRead
 MailboxRead:

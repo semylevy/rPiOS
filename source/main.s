@@ -6,46 +6,80 @@ b main
 
 .section .text
 main:
-mov sp,#0x8000
+    mov sp,#0x8000
 
-/* Sets pin 16 to 001 */
-pinNum .req r0
-pinFunc .req r1
-mov pinNum,#16
-mov pinFunc,#1
-bl SetGpioFunction
-.unreq pinNum
-.unreq pinFunc
+    /* Set screen size */
+    mov r0,#1024
+    mov r1,#768
+    /* Set color (GPU pitch) */
+    mov r2,#16
+    bl InitialiseFrameBuffer
 
-ptrn .req r4
-ldr ptrn,=pattern
-ldr ptrn,[ptrn]
-seq .req r5
-mov seq,#0
+    /* Check for errors */
+    teq r0,#0
+    bne noError$
 
-/* Turns LED on if pattern at sequence is 1 */
-loop$:
-pinNum .req r0
-pinVal .req r1
+    /* If errors, turn on ACT LED */
+    mov r0,#16
+    mov r1,#1
+    bl SetGpioFunction
+    mov r0,#16
+    mov r1,#0
+    bl SetGpio
 
-mov pinVal,#1
-lsl pinVal,seq
-and pinVal,ptrn
+    /* Inifinite loop */
+    error$:
+        b error$
 
-mov pinNum,#16
-bl SetGpio
-.unreq pinNum
-.unreq pinVal
+    noError$:
+        bl SetGraphicsAddress
 
-/* Waits */
-ldr r0,=250000
-bl TimerFunction
+    random .req r5
+    color .req r6
+    x0 .req r9
+    x1 .req r10
+    y0 .req r11
+    y1 .req r12
+    mov random, #0
+    mov color, #0
+    mov x0, #0
+    mov y0, #0
 
-add seq,#1
-and seq,#0b11111
-b loop$ /* Infinite loop */
+    render$:
+        mov r0, random
+        bl Random
+        mov x1, r0
 
-.section .data
-.align 2
-pattern:
-.int 0b11111111101010100010001000101010
+        bl Random
+        mov y1, r0
+
+        mov random, y1
+
+        mov r0, color
+        add color,#1
+        lsl color,#16
+        lsr color,#16
+        bl SetForeColour
+
+        mov r0,x0
+        mov r1,y0
+        lsr x1, x1, #22
+        lsr y1, y1, #22
+
+        cmp y1, #768
+        bhs render$
+        mov r2,x1
+        mov r3,y1
+        mov x0, x1
+        mov y0, y1
+        bl DrawLine
+        b render$
+
+    .unreq random
+    .unreq color
+    .unreq x0
+    .unreq x1
+    .unreq y0
+    .unreq y1
+
+    

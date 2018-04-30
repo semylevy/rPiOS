@@ -1,3 +1,5 @@
+/* ********************** Frame Buffer data ********************** */
+
 .section .data
 .align 4
 .globl FrameBufferInfo
@@ -13,6 +15,8 @@ FrameBufferInfo:
     .int 0 /* #32 GPU - Pointer */
     .int 0 /* #36 GPU - Size */
 
+/* ********************** InitialiseFrameBuffer function ********************** */
+
 .section .text
 .globl InitialiseFrameBuffer
 InitialiseFrameBuffer:
@@ -27,7 +31,7 @@ InitialiseFrameBuffer:
     movhi result,#0
     movhi pc,lr
 
-    fbInfoAddr .req r3
+    fbInfoAddr .req r4
     push {lr}
     /* Gets frame buffer info address */
     ldr fbInfoAddr,=FrameBufferInfo
