@@ -34,52 +34,15 @@ main:
     noError$:
         bl SetGraphicsAddress
 
-    random .req r5
-    color .req r6
-    x0 .req r9
-    x1 .req r10
-    y0 .req r11
-    y1 .req r12
-    mov random, #0
-    mov color, #0
-    mov x0, #0
-    mov y0, #0
+    mov r0,#9
+    bl FindTag
+    ldr r1,[r0]
+    lsl r1,#2
+    sub r1,#8
+    add r0,#8
+    mov r2,#0
+    mov r3,#0
+    bl DrawString
 
-    render$:
-        mov r0, random
-        bl Random
-        mov x1, r0
-
-        bl Random
-        mov y1, r0
-
-        mov random, y1
-
-        mov r0, color
-        add color,#1
-        lsl color,#16
-        lsr color,#16
-        bl SetForeColour
-
-        mov r0,x0
-        mov r1,y0
-        lsr x1, x1, #22
-        lsr y1, y1, #22
-
-        cmp y1, #768
-        bhs render$
-        mov r2,x1
-        mov r3,y1
-        mov x0, x1
-        mov y0, y1
-        bl DrawLine
-        b render$
-
-    .unreq random
-    .unreq color
-    .unreq x0
-    .unreq x1
-    .unreq y0
-    .unreq y1
-
-    
+    loop$:
+    b loop$
