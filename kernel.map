@@ -49,13 +49,14 @@ LOAD build/random.o
 LOAD build/systemTimer.o
 LOAD build/tags.o
 LOAD build/text.o
+LOAD ./libcsud.a
 
 .init           0x0000000000008000        0x4
  *(.init)
  .init          0x0000000000008000        0x4 build/main.o
                 0x0000000000008000                _start
 
-.text           0x0000000000008004      0x6e0
+.text           0x0000000000008004      0x734
  *(.text)
  .text          0x0000000000008004      0x1d4 build/drawing.o
                 0x0000000000008004                SetForeColour
@@ -74,36 +75,36 @@ LOAD build/text.o
                 0x00000000000082d0                GetMailboxBase
                 0x00000000000082d8                MailboxWrite
                 0x000000000000830c                MailboxRead
- .text          0x0000000000008348       0xa8 build/main.o
- .text          0x00000000000083f0       0x48 build/math.o
-                0x00000000000083f0                DivideU32
- .text          0x0000000000008438       0x18 build/random.o
-                0x0000000000008438                Random
- .text          0x0000000000008450       0x40 build/systemTimer.o
-                0x0000000000008450                GetTimerAddress
-                0x0000000000008458                GetTimeStamp
-                0x0000000000008468                TimerFunction
- .text          0x0000000000008490       0x70 build/tags.o
-                0x0000000000008490                FindTag
- .text          0x0000000000008500      0x1e4 build/text.o
-                0x0000000000008500                ReverseString
-                0x000000000000852c                UnsignedString
-                0x000000000000857c                SignedString
-                0x00000000000085a8                FormatString
+ .text          0x0000000000008348       0xfc build/main.o
+ .text          0x0000000000008444       0x48 build/math.o
+                0x0000000000008444                DivideU32
+ .text          0x000000000000848c       0x18 build/random.o
+                0x000000000000848c                Random
+ .text          0x00000000000084a4       0x40 build/systemTimer.o
+                0x00000000000084a4                GetTimerAddress
+                0x00000000000084ac                GetTimeStamp
+                0x00000000000084bc                TimerFunction
+ .text          0x00000000000084e4       0x70 build/tags.o
+                0x00000000000084e4                FindTag
+ .text          0x0000000000008554      0x1e4 build/text.o
+                0x0000000000008554                ReverseString
+                0x0000000000008580                UnsignedString
+                0x00000000000085d0                SignedString
+                0x00000000000085fc                FormatString
 
-.data           0x00000000000086f0      0x866
+.data           0x0000000000008740      0x866
  *(.data)
- .data          0x00000000000086f0      0x810 build/drawing.o
- .data          0x0000000000008f00       0x28 build/framebuffer.o
-                0x0000000000008f00                FrameBufferInfo
- .data          0x0000000000008f28        0x0 build/gpio.o
- .data          0x0000000000008f28        0x0 build/mailbox.o
- .data          0x0000000000008f28        0xa build/main.o
- .data          0x0000000000008f32        0x0 build/math.o
- .data          0x0000000000008f32        0x0 build/random.o
- .data          0x0000000000008f32        0x0 build/systemTimer.o
- .data          0x0000000000008f32       0x24 build/tags.o
- .data          0x0000000000008f56        0x0 build/text.o
+ .data          0x0000000000008740      0x810 build/drawing.o
+ .data          0x0000000000008f50       0x28 build/framebuffer.o
+                0x0000000000008f50                FrameBufferInfo
+ .data          0x0000000000008f78        0x0 build/gpio.o
+ .data          0x0000000000008f78        0x0 build/mailbox.o
+ .data          0x0000000000008f78        0xa build/main.o
+ .data          0x0000000000008f82        0x0 build/math.o
+ .data          0x0000000000008f82        0x0 build/random.o
+ .data          0x0000000000008f82        0x0 build/systemTimer.o
+ .data          0x0000000000008f82       0x24 build/tags.o
+ .data          0x0000000000008fa6        0x0 build/text.o
 
 /DISCARD/
  *(*)

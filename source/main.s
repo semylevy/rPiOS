@@ -52,11 +52,34 @@ main:
     mov r2,#0
     mov r3,r4
 
-    add r3,#10
     cmp r3,#768-16
-    subhi r3,#664
-    addhi r2,#20
+    subhi r3,#768
+    addhi r2,#128
+    cmp r3,#768-16
+    subhi r3,#768
+    addhi r2,#128
+    cmp r3,#768-16
+    subhi r3,#768
+    addhi r2,#128
+    cmp r3,#768-16
+    subhi r3,#768
+    addhi r2,#128
+    cmp r3,#768-16
+    subhi r3,#768
+    addhi r2,#128
+    cmp r3,#768-16
+    subhi r3,#768
+    addhi r2,#128
+
+    mov r5,r0
+    mov r6,r1
+    mov r0,r3
+    add r0,r2
+    bl SetForeColour
+    mov r0,r5
+    mov r1,r6
     bl DrawString
+
     ldr r0,=100000
     bl TimerFunction
 

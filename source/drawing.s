@@ -1,4 +1,4 @@
-/* ********************** Pixe color data ********************** */
+/* ********************** Pixel color data ********************** */
 
 .section .data
 /* Stores pixel color */
