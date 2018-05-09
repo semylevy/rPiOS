@@ -4,45 +4,45 @@
 
 .align 3
 KeysNormal:
-.byte 0x0, 0x0, 0x0, 0x0, 'a', 'b', 'c', 'd'
-.byte 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'
-.byte 'm', 'n', 'o', 'p', 'q', 'r', 's', 't'
-.byte 'u', 'v', 'w', 'x', 'y', 'z', '1', '2'
-.byte '3', '4', '5', '6', '7', '8', '9', '0'
-.byte '\n', 0x0, '\b', '\t', ' ', '-', '=', '['
-.byte ']', '\\', '#', ';', '\'', '`', ',', '.'
-.byte '/', 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
-.byte 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
-.byte 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
-.byte 0x0, 0x0, 0x0, 0x0, '/', '*', '-', '+'
-.byte '\n', '1', '2', '3', '4', '5', '6', '7'
-.byte '8', '9', '0', '.', '\\', 0x0, 0x0, '='
+    .byte 0x0, 0x0, 0x0, 0x0, 'a', 'b', 'c', 'd'
+    .byte 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'
+    .byte 'm', 'n', 'o', 'p', 'q', 'r', 's', 't'
+    .byte 'u', 'v', 'w', 'x', 'y', 'z', '1', '2'
+    .byte '3', '4', '5', '6', '7', '8', '9', '0'
+    .byte '\n', 0x0, '\b', '\t', ' ', '-', '=', '['
+    .byte ']', '\\', '#', ';', '\'', '`', ',', '.'
+    .byte '/', 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+    .byte 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+    .byte 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+    .byte 0x0, 0x0, 0x0, 0x0, '/', '*', '-', '+'
+    .byte '\n', '1', '2', '3', '4', '5', '6', '7'
+    .byte '8', '9', '0', '.', '\\', 0x0, 0x0, '='
 
 /* ********************** Shift keys look up table ********************** */
 
 .align 3
 KeysShift:
-.byte 0x0, 0x0, 0x0, 0x0, 'A', 'B', 'C', 'D'
-.byte 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'
-.byte 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T'
-.byte 'U', 'V', 'W', 'X', 'Y', 'Z', '!', '"'
-.byte '£', '$', '%', '^', '&', '*', '(', ')'
-.byte '\n', 0x0, '\b', '\t', ' ', '_', '+', '{'
-.byte '}', '|', '~', ':', '@', '¬', '<', '>'
-.byte '?', 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
-.byte 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
-.byte 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
-.byte 0x0, 0x0, 0x0, 0x0, '/', '*', '-', '+'
-.byte '\n', '1', '2', '3', '4', '5', '6', '7'
-.byte '8', '9', '0', '.', '|', 0x0, 0x0, '='
+	.byte 0x0, 0x0, 0x0, 0x0, 'A', 'B', 'C', 'D'
+	.byte 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'
+	.byte 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T'
+	.byte 'U', 'V', 'W', 'X', 'Y', 'Z', '!', '"'
+	.byte '#', '$', '%', '^', '&', '*', '(', ')'
+	.byte '\n', 0x0, '\b', '\t', ' ', '_', '+', '{'
+	.byte '}', '|', '~', ':', '@', '.', '<', '>'
+	.byte '?', 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+	.byte 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+	.byte 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+	.byte 0x0, 0x0, 0x0, 0x0, '/', '*', '-', '+'
+	.byte '\n', '1', '2', '3', '4', '5', '6', '7'
+	.byte '8', '9', '0', '.', '|', 0x0, 0x0, '='
 
 .align 2 /* ensures the address of the next line is a multiple of 2 */
 KeyboardAddress:
-.int 0
+    .int 0
 KeyboardOldDown:
-.rept 6     /* Repeat 6 times */
-.hword 0    /* Only a half word (2 bytes) */
-.endr       /* End repeat */
+    .rept 6     /* Repeat 6 times */
+    .hword 0    /* Only a half word (2 bytes) */
+    .endr       /* End repeat */
 
 /* ********************** Keyboard update function ********************** */
 
@@ -72,7 +72,7 @@ KeyboardUpdate:
         str r0, [address]    /* Store keyboard address */
         teq r0, #0
         beq return$   /* There is some kind of error */
-        mov address, [address]
+        ldr address, [address]
 
     keyboardPresent$:
         count .req r5
@@ -94,7 +94,7 @@ KeyboardUpdate:
         bne newKeyboard$
     return$:
         .unreq address
-        pop{r4,r5,pc}
+        pop {r4,r5,pc}
 
 /* ********************** Key was down function ********************** */
 
@@ -124,7 +124,7 @@ KeyWasDown:
 
 .globl KeyboardGetChar
 KeyboardGetChar:
-    push{r4,r5,r6,lr}
+    push {r4,r5,r6,lr}
     address .req r4
     ldr r1, =KeyboardAddress    /* Get keyboard address */
     ldr address, [r1]
@@ -166,4 +166,4 @@ KeyboardGetChar:
         .unreq address
         .unreq scanCode
         .unreq count
-        pop{r4,r5,r6,pc}
+        pop {r4,r5,r6,pc}

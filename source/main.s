@@ -34,60 +34,23 @@ main:
     noError$:
         bl SetGraphicsAddress
 
-    mov r4,#0
-    loop$:
-    ldr r0,=format
-    mov r1,#formatEnd-format
-    ldr r2,=formatEnd
-    lsr r3,r4,#4
-    push {r3}
-    push {r3}
-    push {r3}
-    push {r3}
-    bl FormatString
-    add sp,#16
+    bl UsbInitialise
+    mov r4, #0
+    mov r5, #0
 
-    mov r1,r0
-    ldr r0,=formatEnd
-    mov r2,#0
-    mov r3,r4
-
-    cmp r3,#768-16
-    subhi r3,#768
-    addhi r2,#128
-    cmp r3,#768-16
-    subhi r3,#768
-    addhi r2,#128
-    cmp r3,#768-16
-    subhi r3,#768
-    addhi r2,#128
-    cmp r3,#768-16
-    subhi r3,#768
-    addhi r2,#128
-    cmp r3,#768-16
-    subhi r3,#768
-    addhi r2,#128
-    cmp r3,#768-16
-    subhi r3,#768
-    addhi r2,#128
-
-    mov r5,r0
-    mov r6,r1
-    mov r0,r3
-    add r0,r2
-    bl SetForeColour
-    mov r0,r5
-    mov r1,r6
-    bl DrawString
-
-    ldr r0,=100000
-    bl TimerFunction
-
-    add r4,#16
-    b loop$
-
-    .section .data
-    format:
-    .ascii "HOLA KAREN"
-    formatEnd:
+    loopForever$:
+        bl KeyboardUpdate
+        bl KeyboardGetChar
+        teq r0, #0
+        beq loopForever$
+        mov r1, r4
+        mov r2, r5
+        bl DrawCharacter
+        add r4, r0 /* Add width to x */
+        cmp r4, #1024
+        addge r5, r1
+        movge r4, #0
+        cmp r5, #768
+        movge r5,#0
+        b loopForever$
 
