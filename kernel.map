@@ -1,109 +1,34 @@
 Archive member included to satisfy reference by file (symbol)
 
-./libcsud.a(device.keyboard.c.o)
-                              build/keyboard.o (KeyboardGetAddress)
-./libcsud.a(platform.c.o)     ./libcsud.a(device.keyboard.c.o) (MemoryAllocate)
+./libcsud.a(keyboard.c.o)     build/keyboard.o (KeyboardGetAddress)
+./libcsud.a(platform.c.o)     ./libcsud.a(keyboard.c.o) (MemoryAllocate)
 ./libcsud.a(usbd.c.o)         build/main.o (UsbInitialise)
-./libcsud.a(device.hid.c.o)   ./libcsud.a(device.keyboard.c.o) (HidReadDevice)
-./libcsud.a(device.hub.c.o)   ./libcsud.a(usbd.c.o) (HubPortReset)
-./libcsud.a(hcd.designware20.c.o)
+./libcsud.a(configuration.c.o)
+                              ./libcsud.a(usbd.c.o) (ConfigurationLoad)
+./libcsud.a(hub.c.o)          ./libcsud.a(configuration.c.o) (HubLoad)
+./libcsud.a(hid.c.o)          ./libcsud.a(keyboard.c.o) (HidUsageAttach)
+./libcsud.a(mouse.c.o)        ./libcsud.a(configuration.c.o) (MouseLoad)
+./libcsud.a(designware20.c.o)
                               ./libcsud.a(usbd.c.o) (HcdSumbitControlMessage)
-./libcsud.a(hcd.designware20.roothub.c.o)
-                              ./libcsud.a(hcd.designware20.c.o) (HcdProcessRootHubMessage)
-./libcsud.a(platform.armv6.c.o)
-                              ./libcsud.a(hcd.designware20.c.o) (__aeabi_uidiv)
-./libcsud.a(platform.broadcom2835.c.o)
+./libcsud.a(roothub.c.o)      ./libcsud.a(designware20.c.o) (RootHubDeviceNumber)
+./libcsud.a(broadcom2835.c.o)
                               ./libcsud.a(usbd.c.o) (MicroDelay)
+./libcsud.a(armv6.c.o)        ./libcsud.a(designware20.c.o) (__aeabi_uidiv)
 
 Allocating common symbols
 Common symbol       size              file
 
-CorePhysical        0x4               ./libcsud.a(hcd.designware20.c.o)
-DeviceNumbers       0x4               ./libcsud.a(usbd.c.o)
-HostPhysical        0x4               ./libcsud.a(hcd.designware20.c.o)
-keyboards           0x10              ./libcsud.a(device.keyboard.c.o)
-PowerPhysical       0x4               ./libcsud.a(hcd.designware20.c.o)
+CorePhysical        0x4               ./libcsud.a(designware20.c.o)
+mice                0x10              ./libcsud.a(mouse.c.o)
+InterfaceClassAttach
+                    0x40              ./libcsud.a(usbd.c.o)
+HostPhysical        0x4               ./libcsud.a(designware20.c.o)
+Devices             0x80              ./libcsud.a(usbd.c.o)
+HidUsageAttach      0x28              ./libcsud.a(hid.c.o)
+keyboards           0x10              ./libcsud.a(keyboard.c.o)
+PowerPhysical       0x4               ./libcsud.a(designware20.c.o)
 Heap                0x4000            ./libcsud.a(platform.c.o)
 Allocations         0xc00             ./libcsud.a(platform.c.o)
-
-Discarded input sections
-
- .bss           0x0000000000000000        0x0 build/drawing.o
- .ARM.attributes
-                0x0000000000000000       0x14 build/drawing.o
- .bss           0x0000000000000000        0x0 build/framebuffer.o
- .ARM.attributes
-                0x0000000000000000       0x14 build/framebuffer.o
- .bss           0x0000000000000000        0x0 build/gpio.o
- .ARM.attributes
-                0x0000000000000000       0x14 build/gpio.o
- .bss           0x0000000000000000        0x0 build/keyboard.o
- .ARM.attributes
-                0x0000000000000000       0x14 build/keyboard.o
- .bss           0x0000000000000000        0x0 build/mailbox.o
- .ARM.attributes
-                0x0000000000000000       0x14 build/mailbox.o
- .bss           0x0000000000000000        0x0 build/main.o
- .ARM.attributes
-                0x0000000000000000       0x14 build/main.o
- .bss           0x0000000000000000        0x0 build/math.o
- .ARM.attributes
-                0x0000000000000000       0x14 build/math.o
- .bss           0x0000000000000000        0x0 build/random.o
- .ARM.attributes
-                0x0000000000000000       0x14 build/random.o
- .bss           0x0000000000000000        0x0 build/systemTimer.o
- .ARM.attributes
-                0x0000000000000000       0x14 build/systemTimer.o
- .bss           0x0000000000000000        0x0 build/tags.o
- .ARM.attributes
-                0x0000000000000000       0x14 build/tags.o
- .bss           0x0000000000000000        0x0 build/text.o
- .ARM.attributes
-                0x0000000000000000       0x14 build/text.o
- .bss           0x0000000000000000       0x14 ./libcsud.a(device.keyboard.c.o)
- .comment       0x0000000000000000       0x12 ./libcsud.a(device.keyboard.c.o)
- .ARM.attributes
-                0x0000000000000000       0x32 ./libcsud.a(device.keyboard.c.o)
- COMMON         0x0000000000000000       0x10 ./libcsud.a(device.keyboard.c.o)
- .bss           0x0000000000000000        0x8 ./libcsud.a(platform.c.o)
- .comment       0x0000000000000000       0x12 ./libcsud.a(platform.c.o)
- .ARM.attributes
-                0x0000000000000000       0x32 ./libcsud.a(platform.c.o)
- COMMON         0x0000000000000000     0x4c00 ./libcsud.a(platform.c.o)
- .bss           0x0000000000000000        0x4 ./libcsud.a(usbd.c.o)
- .rodata        0x0000000000000000      0x248 ./libcsud.a(usbd.c.o)
- .rodata.str1.4
-                0x0000000000000000       0x10 ./libcsud.a(usbd.c.o)
- .comment       0x0000000000000000       0x12 ./libcsud.a(usbd.c.o)
- .ARM.attributes
-                0x0000000000000000       0x32 ./libcsud.a(usbd.c.o)
- COMMON         0x0000000000000000        0x4 ./libcsud.a(usbd.c.o)
- .bss           0x0000000000000000        0x0 ./libcsud.a(device.hid.c.o)
- .comment       0x0000000000000000       0x12 ./libcsud.a(device.hid.c.o)
- .ARM.attributes
-                0x0000000000000000       0x32 ./libcsud.a(device.hid.c.o)
- .bss           0x0000000000000000        0x0 ./libcsud.a(device.hub.c.o)
- .comment       0x0000000000000000       0x12 ./libcsud.a(device.hub.c.o)
- .ARM.attributes
-                0x0000000000000000       0x32 ./libcsud.a(device.hub.c.o)
- .bss           0x0000000000000000       0x14 ./libcsud.a(hcd.designware20.c.o)
- .comment       0x0000000000000000       0x12 ./libcsud.a(hcd.designware20.c.o)
- .ARM.attributes
-                0x0000000000000000       0x32 ./libcsud.a(hcd.designware20.c.o)
- COMMON         0x0000000000000000        0xc ./libcsud.a(hcd.designware20.c.o)
- .bss           0x0000000000000000        0x4 ./libcsud.a(hcd.designware20.roothub.c.o)
- .comment       0x0000000000000000       0x12 ./libcsud.a(hcd.designware20.roothub.c.o)
- .ARM.attributes
-                0x0000000000000000       0x32 ./libcsud.a(hcd.designware20.roothub.c.o)
- .bss           0x0000000000000000        0x0 ./libcsud.a(platform.armv6.c.o)
- .comment       0x0000000000000000       0x12 ./libcsud.a(platform.armv6.c.o)
- .ARM.attributes
-                0x0000000000000000       0x32 ./libcsud.a(platform.armv6.c.o)
- .bss           0x0000000000000000        0x0 ./libcsud.a(platform.broadcom2835.c.o)
- .comment       0x0000000000000000       0x12 ./libcsud.a(platform.broadcom2835.c.o)
- .ARM.attributes
-                0x0000000000000000       0x32 ./libcsud.a(platform.broadcom2835.c.o)
 
 Memory Configuration
 
@@ -130,7 +55,7 @@ LOAD ./libcsud.a
  .init          0x0000000000008000        0x4 build/main.o
                 0x0000000000008000                _start
 
-.text           0x0000000000008004     0x767c
+.text           0x0000000000008004    0x10540
  *(.text)
  .text          0x0000000000008004      0x1d4 build/drawing.o
                 0x0000000000008004                SetForeColour
@@ -153,150 +78,314 @@ LOAD ./libcsud.a
                 0x0000000000008410                GetMailboxBase
                 0x0000000000008418                MailboxWrite
                 0x000000000000844c                MailboxRead
- .text          0x0000000000008488       0x80 build/main.o
- .text          0x0000000000008508       0x48 build/math.o
-                0x0000000000008508                DivideU32
- .text          0x0000000000008550       0x18 build/random.o
-                0x0000000000008550                Random
- .text          0x0000000000008568       0x40 build/systemTimer.o
-                0x0000000000008568                GetTimerAddress
-                0x0000000000008570                GetTimeStamp
-                0x0000000000008580                TimerFunction
- .text          0x00000000000085a8       0x70 build/tags.o
-                0x00000000000085a8                FindTag
- .text          0x0000000000008618      0x1e4 build/text.o
-                0x0000000000008618                ReverseString
-                0x0000000000008644                UnsignedString
-                0x0000000000008694                SignedString
-                0x00000000000086c0                FormatString
- .text          0x00000000000087fc     0x1000 ./libcsud.a(device.keyboard.c.o)
-                0x00000000000087fc                KeyboardDetached
-                0x0000000000008878                KeyboardDeallocate
-                0x00000000000088f0                KeyboardIndex
-                0x0000000000008948                KeyboardGetAddress
-                0x0000000000008990                KeyboardScan
-                0x000000000000905c                KeyboardCount
-                0x000000000000906c                KeyboardSetLeds
-                0x0000000000009288                KeyboardGetLedSupport
-                0x00000000000092d4                KeyboardPoll
-                0x0000000000009618                KeyboardGetModifiers
-                0x0000000000009664                KeyboardGetKeyDownCount
-                0x00000000000096c8                KeyboadGetKeyIsDown
-                0x0000000000009780                KeyboardGetKeyDown
- .text          0x00000000000097fc      0x5c0 ./libcsud.a(platform.c.o)
-                0x00000000000097fc                MemoryReserve
-                0x0000000000009804                MemoryAllocate
-                0x0000000000009c54                MemoryDeallocate
-                0x0000000000009d6c                MemoryCopy
- .text          0x0000000000009dbc     0x10e8 ./libcsud.a(usbd.c.o)
-                0x0000000000009dbc                UsbGetRootHub
-                0x0000000000009dcc                UsbPrintDeviceTree
-                0x0000000000009e98                UsbControlMessage
-                0x0000000000009f90                UsbGetDescriptor
-                0x000000000000a07c                UsbGetString
-                0x000000000000a0e8                UsbReadStringLang
-                0x000000000000a16c                UsbReadString
-                0x000000000000a26c                UsbReadDeviceDescriptor
-                0x000000000000a3ac                UsbSetAddress
-                0x000000000000a48c                UsbSetConfiguration
-                0x000000000000a560                UsbConfigure
-                0x000000000000a730                UsbGetDescription
-                0x000000000000a9e0                UsbScanDevice
-                0x000000000000ac08                UsbAllocateDevice
-                0x000000000000acc4                UsbDeallocateDevice
-                0x000000000000addc                UsbScanRootHub
-                0x000000000000ae2c                UsbInitialise
-                0x000000000000ae88                UsbCheckForChange
- .text          0x000000000000aea4     0x1b24 ./libcsud.a(device.hid.c.o)
-                0x000000000000aea4                HidEnumerateActionCountField
-                0x000000000000afcc                HidDetached
-                0x000000000000b008                HidEnumerateActionAddField
-                0x000000000000b810                HidDeallocate
-                0x000000000000b964                HidEnumerateActionCountReport
-                0x000000000000ba1c                HidGetReport
-                0x000000000000bad8                HidSetReport
-                0x000000000000bb88                BitSet
-                0x000000000000bcb4                BitGetUnsigned
-                0x000000000000bdbc                BitGetSigned
-                0x000000000000bde8                HidReadDevice
-                0x000000000000bfe4                HidWriteDevice
-                0x000000000000c190                HidSetProtocol
-                0x000000000000c240                HidEnumerateReport
-                0x000000000000c398                HidParseReportDescriptor
-                0x000000000000c6c8                HidScan
-                0x000000000000c9b8                HidGetFieldValue
- .text          0x000000000000c9c8      0xd34 ./libcsud.a(device.hub.c.o)
-                0x000000000000c9c8                HubDetached
-                0x000000000000ca68                HubDeallocate
-                0x000000000000cb44                HubReadDescriptor
-                0x000000000000cc3c                HubGetStatus
-                0x000000000000cd14                HubPortGetStatus
-                0x000000000000cdf4                HubChangeFeature
-                0x000000000000cea8                HubChangePortFeature
-                0x000000000000cf64                HubPowerOn
-                0x000000000000d00c                HubPortReset
-                0x000000000000d0e0                HubPortConnectionChanged
-                0x000000000000d2e8                HubCheckConnection
-                0x000000000000d41c                HubRecursiveCheck
-                0x000000000000d4e4                HubScan
- .text          0x000000000000d6fc     0x160c ./libcsud.a(hcd.designware20.c.o)
-                0x000000000000d6fc                WriteThroughRegMask
-                0x000000000000d790                WriteThroughReg
-                0x000000000000d798                ReadBackReg
-                0x000000000000d83c                ClearReg
-                0x000000000000d8a4                SetReg
-                0x000000000000d940                HcdReset
-                0x000000000000d9f0                HcdTransmitFifoFlush
-                0x000000000000da84                HcdReceiveFifoFlush
-                0x000000000000dafc                HcdPrepareChannel
-                0x000000000000de14                HcdTransmitChannel
-                0x000000000000dec0                HcdChannelInterruptToError
-                0x000000000000df9c                HcdChannelSendWaitOne
-                0x000000000000e258                HcdChannelSendWait
-                0x000000000000e370                HcdSumbitControlMessage
-                0x000000000000e5b8                HcdInitialise
-                0x000000000000e74c                HcdStart
-                0x000000000000eca8                HcdStop
-                0x000000000000eccc                HcdDeinitialise
- .text          0x000000000000ed08      0x6f0 ./libcsud.a(hcd.designware20.roothub.c.o)
-                0x000000000000ed08                HcdProcessRootHubMessage
- .text          0x000000000000f3f8      0x16c ./libcsud.a(platform.armv6.c.o)
-                0x000000000000f3f8                __aeabi_uidivmod
-                0x000000000000f52c                __aeabi_uidiv
- .text          0x000000000000f564      0x11c ./libcsud.a(platform.broadcom2835.c.o)
-                0x000000000000f564                MicroDelay
-                0x000000000000f5d4                PowerOnUsb
+ .text          0x0000000000008488       0xa4 build/main.o
+ .text          0x000000000000852c       0x48 build/math.o
+                0x000000000000852c                DivideU32
+ .text          0x0000000000008574       0x18 build/random.o
+                0x0000000000008574                Random
+ .text          0x000000000000858c       0x40 build/systemTimer.o
+                0x000000000000858c                GetTimerAddress
+                0x0000000000008594                GetTimeStamp
+                0x00000000000085a4                TimerFunction
+ .text          0x00000000000085cc       0x70 build/tags.o
+                0x00000000000085cc                FindTag
+ .text          0x000000000000863c      0x1e4 build/text.o
+                0x000000000000863c                ReverseString
+                0x0000000000008668                UnsignedString
+                0x00000000000086b8                SignedString
+                0x00000000000086e4                FormatString
+ .text          0x0000000000008820     0x2238 ./libcsud.a(keyboard.c.o)
+                0x0000000000008820                KbdLoad
+                0x00000000000088ac                KeyboardIndex
+                0x0000000000008938                KeyboardGetAddress
+                0x00000000000089dc                KeyboardDetached
+                0x0000000000008b1c                KeyboardDeallocate
+                0x0000000000008bfc                KeyboardAttach
+                0x0000000000009b3c                KeyboardCount
+                0x0000000000009b60                KeyboardSetLeds
+                0x0000000000009f04                KeyboardGetLedSupport
+                0x0000000000009f8c                KeyboardPoll
+                0x000000000000a730                KeyboardGetModifiers
+                0x000000000000a7b8                KeyboardGetKeyDownCount
+                0x000000000000a864                KeyboadGetKeyIsDown
+                0x000000000000a984                KeyboardGetKeyDown
+ .text          0x000000000000aa58      0xca0 ./libcsud.a(platform.c.o)
+                0x000000000000aa58                MemoryReserve
+                0x000000000000aa80                MemoryAllocate
+                0x000000000000b428                MemoryDeallocate
+                0x000000000000b5cc                MemoryCopy
+                0x000000000000b6c0                PlatformLoad
+ .text          0x000000000000b6f8     0x1b54 ./libcsud.a(usbd.c.o)
+                0x000000000000b758                UsbGetRootHub
+                0x000000000000b77c                UsbLoad
+                0x000000000000b808                UsbInitialise
+                0x000000000000b8a0                UsbControlMessage
+                0x000000000000b9cc                UsbGetDescriptor
+                0x000000000000bb54                UsbGetString
+                0x000000000000bc00                UsbReadStringLang
+                0x000000000000bce0                UsbReadString
+                0x000000000000bee0                UsbReadDeviceDescriptor
+                0x000000000000c0d8                UsbSetAddress
+                0x000000000000c210                UsbSetConfiguration
+                0x000000000000c34c                UsbConfigure
+                0x000000000000c6bc                UsbGetDescription
+                0x000000000000caf0                UsbAttachDevice
+                0x000000000000ce80                UsbAllocateDevice
+                0x000000000000d00c                UsbDeallocateDevice
+                0x000000000000d160                UsbAttachRootHub
+                0x000000000000d1ec                UsbCheckForChange
+ .text          0x000000000000d24c       0x30 ./libcsud.a(configuration.c.o)
+                0x000000000000d24c                ConfigurationLoad
+ .text          0x000000000000d27c     0x20e8 ./libcsud.a(hub.c.o)
+                0x000000000000d2dc                HubLoad
+                0x000000000000d308                HubReadDescriptor
+                0x000000000000d4d4                HubGetStatus
+                0x000000000000d600                HubPortGetStatus
+                0x000000000000d760                HubChangeFeature
+                0x000000000000d890                HubChangePortFeature
+                0x000000000000d9f0                HubPowerOn
+                0x000000000000dae8                HubPortReset
+                0x000000000000dcb4                HubPortConnectionChanged
+                0x000000000000e248                HubDetached
+                0x000000000000e44c                HubDeallocate
+                0x000000000000e688                HubCheckForChange
+                0x000000000000e8a4                HubChildDetached
+                0x000000000000e9cc                HubChildReset
+                0x000000000000eadc                HubCheckConnectionDevice
+                0x000000000000ec7c                HubCheckConnection
+                0x000000000000ee78                HubAttach
+ .text          0x000000000000f364     0x413c ./libcsud.a(hid.c.o)
+                0x000000000000f3c4                HidLoad
+                0x000000000000f3f0                HidGetReport
+                0x000000000000f560                HidSetReport
+                0x000000000000f6c4                BitSet
+                0x000000000000f9a8                BitGetUnsigned
+                0x000000000000fbf8                BitGetSigned
+                0x000000000000fc7c                HidReadDevice
+                0x000000000001008c                HidWriteDevice
+                0x00000000000103d8                HidSetProtocol
+                0x00000000000104f4                HidEnumerateReport
+                0x0000000000010728                HidEnumerateActionCountReport
+                0x000000000001095c                HidEnumerateActionCountField
+                0x0000000000010c14                HidEnumerateActionAddField
+                0x00000000000122d0                HidParseReportDescriptor
+                0x000000000001292c                HidDetached
+                0x00000000000129d4                HidDeallocate
+                0x0000000000012d08                HidAttach
+                0x000000000001344c                HidGetFieldValue
+ .text          0x00000000000134a0     0x10e8 ./libcsud.a(mouse.c.o)
+                0x00000000000134a0                MouseLoad
+                0x000000000001352c                MouseIndex
+                0x00000000000135b8                MouseGetAddress
+                0x000000000001365c                MouseDetached
+                0x000000000001379c                MouseDeallocate
+                0x000000000001387c                MouseAttach
+                0x0000000000013d6c                MouseCount
+                0x0000000000013d90                MousePoll
+                0x0000000000014128                MouseGetPositionX
+                0x00000000000141cc                MouseGetPositionY
+                0x0000000000014270                MouseGetWheel
+                0x0000000000014314                MouseGetPosition
+                0x00000000000143ec                MouseGetButtons
+                0x0000000000014474                MouseGetButtonIsPressed
+ .text          0x0000000000014588     0x311c ./libcsud.a(designware20.c.o)
+                0x00000000000145ec                DwcLoad
+                0x0000000000014604                WriteThroughReg
+                0x0000000000014630                WriteThroughRegMask
+                0x0000000000014788                ReadBackReg
+                0x000000000001494c                ClearReg
+                0x0000000000014a48                SetReg
+                0x0000000000014bc8                HcdReset
+                0x0000000000014ce0                HcdTransmitFifoFlush
+                0x0000000000014e08                HcdReceiveFifoFlush
+                0x0000000000014ecc                HcdPrepareChannel
+                0x0000000000015670                HcdTransmitChannel
+                0x0000000000015840                HcdChannelInterruptToError
+                0x00000000000159fc                HcdChannelSendWaitOne
+                0x0000000000016154                HcdChannelSendWait
+                0x0000000000016410                HcdSumbitControlMessage
+                0x0000000000016908                HcdInitialise
+                0x0000000000016bd4                HcdStart
+                0x00000000000175dc                HcdStop
+                0x000000000001761c                HcdDeinitialise
+ .text          0x00000000000176a4      0xbf4 ./libcsud.a(roothub.c.o)
+                0x00000000000176a4                HcdProcessRootHubMessage
+ .text          0x0000000000018298      0x128 ./libcsud.a(broadcom2835.c.o)
+                0x0000000000018298                Bcm2835Load
+                0x00000000000182b0                MicroDelay
+                0x0000000000018320                PowerOnUsb
+ .text          0x00000000000183c0      0x184 ./libcsud.a(armv6.c.o)
+                0x00000000000183c0                Arm6Load
+                0x00000000000183d8                __aeabi_uidivmod
+                0x000000000001850c                __aeabi_uidiv
 
-.data           0x000000000000f680      0x9a4
+.rodata         0x0000000000018544      0x24d
+ .rodata        0x0000000000018544      0x24d ./libcsud.a(usbd.c.o)
+
+.glue_7         0x0000000000018794        0x0
+ .glue_7        0x0000000000018794        0x0 linker stubs
+
+.glue_7t        0x0000000000018794        0x0
+ .glue_7t       0x0000000000018794        0x0 linker stubs
+
+.vfp11_veneer   0x0000000000018794        0x0
+ .vfp11_veneer  0x0000000000018794        0x0 linker stubs
+
+.v4_bx          0x0000000000018794        0x0
+ .v4_bx         0x0000000000018794        0x0 linker stubs
+
+.iplt           0x0000000000018794        0x0
+ .iplt          0x0000000000018794        0x0 build/drawing.o
+
+.rel.dyn        0x0000000000018794        0x0
+ .rel.iplt      0x0000000000018794        0x0 build/drawing.o
+
+.data           0x00000000000187a0      0x9a1
  *(.data)
- .data          0x000000000000f680      0x810 build/drawing.o
- .data          0x000000000000fe90       0x28 build/framebuffer.o
-                0x000000000000fe90                FrameBufferInfo
- .data          0x000000000000feb8        0x0 build/gpio.o
- .data          0x000000000000feb8       0xe0 build/keyboard.o
- .data          0x000000000000ff98        0x0 build/mailbox.o
- .data          0x000000000000ff98        0x0 build/main.o
- .data          0x000000000000ff98        0x0 build/math.o
- .data          0x000000000000ff98        0x0 build/random.o
- .data          0x000000000000ff98        0x0 build/systemTimer.o
- .data          0x000000000000ff98       0x24 build/tags.o
- .data          0x000000000000ffbc        0x0 build/text.o
- .data          0x000000000000ffbc        0x0 ./libcsud.a(device.keyboard.c.o)
- .data          0x000000000000ffbc        0x4 ./libcsud.a(platform.c.o)
-                0x000000000000ffbc                FirstAllocation
- .data          0x000000000000ffc0        0x0 ./libcsud.a(usbd.c.o)
- .data          0x000000000000ffc0        0x0 ./libcsud.a(device.hid.c.o)
- .data          0x000000000000ffc0        0x0 ./libcsud.a(device.hub.c.o)
- .data          0x000000000000ffc0        0x0 ./libcsud.a(hcd.designware20.c.o)
- .data          0x000000000000ffc0       0x64 ./libcsud.a(hcd.designware20.roothub.c.o)
-                0x000000000000ffc0                DeviceDescriptor
-                0x000000000000ffd4                ConfigurationDescriptor
-                0x000000000000fff0                String0
-                0x000000000000fff4                String1
-                0x0000000000010018                HubDescriptor
- .data          0x0000000000010024        0x0 ./libcsud.a(platform.armv6.c.o)
- .data          0x0000000000010024        0x0 ./libcsud.a(platform.broadcom2835.c.o)
-
-/DISCARD/
- *(*)
+ .data          0x00000000000187a0      0x810 build/drawing.o
+ .data          0x0000000000018fb0       0x28 build/framebuffer.o
+                0x0000000000018fb0                FrameBufferInfo
+ .data          0x0000000000018fd8        0x0 build/gpio.o
+ .data          0x0000000000018fd8       0xe0 build/keyboard.o
+ .data          0x00000000000190b8        0x0 build/mailbox.o
+ .data          0x00000000000190b8        0x0 build/main.o
+ .data          0x00000000000190b8        0x0 build/math.o
+ .data          0x00000000000190b8        0x0 build/random.o
+ .data          0x00000000000190b8        0x0 build/systemTimer.o
+ .data          0x00000000000190b8       0x24 build/tags.o
+ .data          0x00000000000190dc        0x0 build/text.o
+ .data          0x00000000000190dc        0x0 ./libcsud.a(keyboard.c.o)
+ .data          0x00000000000190dc        0x4 ./libcsud.a(platform.c.o)
+                0x00000000000190dc                FirstAllocation
+ .data          0x00000000000190e0        0x0 ./libcsud.a(usbd.c.o)
+ .data          0x00000000000190e0        0x0 ./libcsud.a(configuration.c.o)
+ .data          0x00000000000190e0        0x0 ./libcsud.a(hub.c.o)
+ .data          0x00000000000190e0        0x0 ./libcsud.a(hid.c.o)
+ .data          0x00000000000190e0        0x0 ./libcsud.a(mouse.c.o)
+ .data          0x00000000000190e0        0x0 ./libcsud.a(designware20.c.o)
+ .data          0x00000000000190e0       0x61 ./libcsud.a(roothub.c.o)
+                0x00000000000190e0                DeviceDescriptor
+                0x00000000000190f4                ConfigurationDescriptor
+                0x0000000000019110                String0
+                0x0000000000019114                String1
+                0x0000000000019138                HubDescriptor
+ .data          0x0000000000019141        0x0 ./libcsud.a(broadcom2835.c.o)
+ .data          0x0000000000019141        0x0 ./libcsud.a(armv6.c.o)
 OUTPUT(build/output.elf elf32-littlearm)
+
+.igot.plt       0x0000000000019144        0x0
+ .igot.plt      0x0000000000019144        0x0 build/drawing.o
+
+.bss            0x0000000000019148     0x4d60
+ .bss           0x0000000000019148        0x0 build/drawing.o
+ .bss           0x0000000000019148        0x0 build/framebuffer.o
+ .bss           0x0000000000019148        0x0 build/gpio.o
+ .bss           0x0000000000019148        0x0 build/keyboard.o
+ .bss           0x0000000000019148        0x0 build/mailbox.o
+ .bss           0x0000000000019148        0x0 build/main.o
+ .bss           0x0000000000019148        0x0 build/math.o
+ .bss           0x0000000000019148        0x0 build/random.o
+ .bss           0x0000000000019148        0x0 build/systemTimer.o
+ .bss           0x0000000000019148        0x0 build/tags.o
+ .bss           0x0000000000019148        0x0 build/text.o
+ .bss           0x0000000000019148       0x14 ./libcsud.a(keyboard.c.o)
+                0x0000000000019148                keyboardCount
+                0x000000000001914c                keyboardAddresses
+ COMMON         0x000000000001915c       0x10 ./libcsud.a(keyboard.c.o)
+                0x000000000001915c                keyboards
+ .bss           0x000000000001916c        0x8 ./libcsud.a(platform.c.o)
+                0x000000000001916c                FirstFreeAllocation
+                0x0000000000019170                allocated
+ *fill*         0x0000000000019174        0x4 
+ COMMON         0x0000000000019178     0x4c00 ./libcsud.a(platform.c.o)
+                0x0000000000019178                Heap
+                0x000000000001d178                Allocations
+ .bss           0x000000000001dd78        0x0 ./libcsud.a(usbd.c.o)
+ COMMON         0x000000000001dd78       0xc0 ./libcsud.a(usbd.c.o)
+                0x000000000001dd78                InterfaceClassAttach
+                0x000000000001ddb8                Devices
+ .bss           0x000000000001de38        0x0 ./libcsud.a(configuration.c.o)
+ .bss           0x000000000001de38        0x0 ./libcsud.a(hub.c.o)
+ .bss           0x000000000001de38        0x0 ./libcsud.a(hid.c.o)
+ COMMON         0x000000000001de38       0x28 ./libcsud.a(hid.c.o)
+                0x000000000001de38                HidUsageAttach
+ .bss           0x000000000001de60       0x14 ./libcsud.a(mouse.c.o)
+                0x000000000001de60                mouseCount
+                0x000000000001de64                mouseAddresses
+ COMMON         0x000000000001de74       0x10 ./libcsud.a(mouse.c.o)
+                0x000000000001de74                mice
+ .bss           0x000000000001de84       0x14 ./libcsud.a(designware20.c.o)
+                0x000000000001de84                Core
+                0x000000000001de88                Host
+                0x000000000001de8c                Power
+                0x000000000001de90                PhyInitialised
+                0x000000000001de94                databuffer
+ COMMON         0x000000000001de98        0xc ./libcsud.a(designware20.c.o)
+                0x000000000001de98                CorePhysical
+                0x000000000001de9c                HostPhysical
+                0x000000000001dea0                PowerPhysical
+ .bss           0x000000000001dea4        0x4 ./libcsud.a(roothub.c.o)
+                0x000000000001dea4                RootHubDeviceNumber
+ .bss           0x000000000001dea8        0x0 ./libcsud.a(broadcom2835.c.o)
+ .bss           0x000000000001dea8        0x0 ./libcsud.a(armv6.c.o)
+
+.ARM.attributes
+                0x0000000000000000       0x2c
+ .ARM.attributes
+                0x0000000000000000       0x14 build/drawing.o
+ .ARM.attributes
+                0x0000000000000014       0x12 build/framebuffer.o
+ .ARM.attributes
+                0x0000000000000026       0x12 build/gpio.o
+ .ARM.attributes
+                0x0000000000000038       0x14 build/keyboard.o
+ .ARM.attributes
+                0x000000000000004c       0x12 build/mailbox.o
+ .ARM.attributes
+                0x000000000000005e       0x12 build/main.o
+ .ARM.attributes
+                0x0000000000000070       0x14 build/math.o
+ .ARM.attributes
+                0x0000000000000084       0x12 build/random.o
+ .ARM.attributes
+                0x0000000000000096       0x14 build/systemTimer.o
+ .ARM.attributes
+                0x00000000000000aa       0x14 build/tags.o
+ .ARM.attributes
+                0x00000000000000be       0x12 build/text.o
+ .ARM.attributes
+                0x00000000000000d0       0x30 ./libcsud.a(keyboard.c.o)
+ .ARM.attributes
+                0x0000000000000100       0x30 ./libcsud.a(platform.c.o)
+ .ARM.attributes
+                0x0000000000000130       0x30 ./libcsud.a(usbd.c.o)
+ .ARM.attributes
+                0x0000000000000160       0x30 ./libcsud.a(configuration.c.o)
+ .ARM.attributes
+                0x0000000000000190       0x30 ./libcsud.a(hub.c.o)
+ .ARM.attributes
+                0x00000000000001c0       0x30 ./libcsud.a(hid.c.o)
+ .ARM.attributes
+                0x00000000000001f0       0x30 ./libcsud.a(mouse.c.o)
+ .ARM.attributes
+                0x0000000000000220       0x30 ./libcsud.a(designware20.c.o)
+ .ARM.attributes
+                0x0000000000000250       0x30 ./libcsud.a(roothub.c.o)
+ .ARM.attributes
+                0x0000000000000280       0x30 ./libcsud.a(broadcom2835.c.o)
+ .ARM.attributes
+                0x00000000000002b0       0x30 ./libcsud.a(armv6.c.o)
+
+.comment        0x0000000000000000       0x6e
+ .comment       0x0000000000000000       0x6e ./libcsud.a(keyboard.c.o)
+                                         0x6f (size before relaxing)
+ .comment       0x000000000000006e       0x6f ./libcsud.a(platform.c.o)
+ .comment       0x000000000000006e       0x6f ./libcsud.a(usbd.c.o)
+ .comment       0x000000000000006e       0x6f ./libcsud.a(configuration.c.o)
+ .comment       0x000000000000006e       0x6f ./libcsud.a(hub.c.o)
+ .comment       0x000000000000006e       0x6f ./libcsud.a(hid.c.o)
+ .comment       0x000000000000006e       0x6f ./libcsud.a(mouse.c.o)
+ .comment       0x000000000000006e       0x6f ./libcsud.a(designware20.c.o)
+ .comment       0x000000000000006e       0x6f ./libcsud.a(roothub.c.o)
+ .comment       0x000000000000006e       0x6f ./libcsud.a(broadcom2835.c.o)
+ .comment       0x000000000000006e       0x6f ./libcsud.a(armv6.c.o)

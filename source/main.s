@@ -35,22 +35,42 @@ main:
         bl SetGraphicsAddress
 
     bl UsbInitialise
+
     mov r4, #0
     mov r5, #0
 
     loopForever$:
         bl KeyboardUpdate
+        teq r0, #0
+        beq LedOn$
+
         bl KeyboardGetChar
+
         teq r0, #0
         beq loopForever$
+
         mov r1, r4
         mov r2, r5
         bl DrawCharacter
+
         add r4, r0 /* Add width to x */
-        cmp r4, #1024
+
+        teq r4, #1024
         addge r5, r1
         movge r4, #0
-        cmp r5, #768
-        movge r5,#0
+        teqeq r5, #768
+        moveq r5,#0
+
         b loopForever$
 
+    LedOn$:
+        /* If errors, turn on ACT LED */
+        mov r0,#16
+        mov r1,#1
+        bl SetGpioFunction
+        mov r0,#16
+        mov r1,#0
+        bl SetGpio
+        /* Inifinite loop */
+    error1$:
+        b error1$
