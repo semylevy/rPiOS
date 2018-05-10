@@ -313,10 +313,9 @@ ReadLine:
 	sub maxLength,#1
 	mov r0,#'_'
 	strb r0,[string,length]
-	mov r10, #0
 	readLoop$:
 		add r10, #1
-		teq r10, #19
+		teq r10, #37
 		moveq r10, #1
 
 		str input,[taddr,#terminalStop-terminalStart]
@@ -444,5 +443,59 @@ HardCodeFunctions:
 	moveq r0, #'\n'
 	moveq pc, lr
 	teq r10, #18
-	moveq r0, #'\b'
+	moveq r0, #'o'
+	moveq pc, lr
+	teq r10, #19
+	moveq r0, #'k'
+	moveq pc, lr
+	teq r10, #20
+	moveq r0, #' '
+	moveq pc, lr
+	teq r10, #21
+	moveq r0, #'o'
+	moveq pc, lr
+	teq r10, #22
+	moveq r0, #'n'
+	moveq pc, lr
+	teq r10, #23
+	moveq r0, #'\n'
+	moveq pc, lr
+	teq r10, #24
+	moveq r0, #'c'
+	moveq pc, lr
+	teq r10, #25
+	moveq r0, #'l'
+	moveq pc, lr
+	teq r10, #26
+	moveq r0, #'s'
+	moveq pc, lr
+	teq r10, #27
+	moveq r0, #'\n'
+	moveq pc, lr
+	teq r10, #28
+	moveq r0, #'\n'
+	moveq pc, lr
+	teq r10, #29
+	moveq r0, #'\n'
+	moveq pc, lr
+	teq r10, #30
+	moveq r0, #'o'
+	moveq pc, lr
+	teq r10, #31
+	moveq r0, #'k'
+	moveq pc, lr
+	teq r10, #32
+	moveq r0, #' '
+	moveq pc, lr
+	teq r10, #33
+	moveq r0, #'o'
+	moveq pc, lr
+	teq r10, #34
+	moveq r0, #'f'
+	moveq pc, lr
+	teq r10, #35
+	moveq r0, #'f'
+	moveq pc, lr
+	teq r10, #36
+	moveq r0, #'\n'
 	moveq pc, lr
